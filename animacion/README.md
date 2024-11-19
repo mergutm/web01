@@ -357,3 +357,12 @@ function mover_jugador(direction) {
 
 
 
+## Usar la función para desplegar el laberinto al final del código JS para poder mostrar el laberinto y la posición del jugador.
+
+Sin esto, no se desplegará el laberinto.
+
+```javascript
+dibujar_laberinto3();
+```
+
+Haga los cambios que considere.
