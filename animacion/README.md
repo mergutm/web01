@@ -231,13 +231,12 @@ Obteniendo la siguiente salida:
 * Se dibuja el rectángulo usando el color que se definió para el jugador (amarillo).
 
 ```javascript
-
-    // Dibujar la posición del jugador después de mostrar el laberinto
-    const { row, col } = pos_jugador;
-    const x = col * cellWidth;
-    const y = row * cellHeight;
-    ctx.fillStyle = colores.jugador;
-    ctx.fillRect(x, y, cellWidth, cellHeight);
+// Dibujar la posición del jugador después de mostrar el laberinto
+const { row, col } = pos_jugador;
+const x = col * cellWidth;
+const y = row * cellHeight;
+ctx.fillStyle = colores.jugador;
+ctx.fillRect(x, y, cellWidth, cellHeight);
 ```
 Al agregar todo a la función, se obtiene la siguiente función.
 
@@ -276,17 +275,57 @@ Se apreciará el siguiente laberinto en pantalla:
 Notar el rectángulo amarillo que indica la posición del jugador.
 
 
+# Evento para capturar teclas 
 
+Haciendo un paréntesis, existen 2 eventos que se pueden usar para detectar cuando se presiona una tecla en un componente de HTML. 
+
+Este código puede probarse en la consola o agregarse al código en JS.
+
+```javascript
+// Agregar un evento global para detectar la tecla presionada
+document.addEventListener("keydown", (event) => {
+    console.log(`Tecla presionada: ${event.key}`);
+});
+
+
+// Agregar un evento global para detectar la tecla presionada
+document.addEventListener("keyup", (event) => {
+    console.log(`Tecla liberada: ${event.key}`);
+});
+```
+
+| Evento   | Cuándo se dispara                          | Detecta teclas especiales (Ctrl, Shift, etc.) |
+|----------|--------------------------------------------|-----------------------------------------------|
+| keydown  | Al presionar una tecla                     | Sí                                            |
+| keyup    | Al soltar una tecla                        | Sí                                            |
+| keypress | Al presionar una tecla que genera carácter | No (Obsoleto)                                 |
+
+* `keydown`: Se dispara cuando el usuario presiona una tecla.
+Se activa una vez, incluso si la tecla se mantiene presionada.
+Útil para capturar la tecla en el momento exacto en que comienza a presionarse.
+* `keyup`: Se dispara cuando el usuario libera una tecla.
+Útil para detectar acciones después de que se completa la pulsación.
+* `keypress`: Similar a keydown, pero se activa sólo para teclas que generan un carácter visible. **Nota**: Este evento está obsoleto y se desaconseja su uso. Se sugiere usar keydown o keyup. 
 
 
 
 ```javascript
-
+        // Escuchar eventos de teclado
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'ArrowUp') movePlayer('up');
+            else if (event.key === 'ArrowDown') movePlayer('down');
+            else if (event.key === 'ArrowLeft') movePlayer('left');
+            else if (event.key === 'ArrowRight') movePlayer('right');
+        });
 ```
 
 
 
 ```javascript
+// Agregar un evento global para detectar la tecla presionada
+document.addEventListener("keydown", (event) => {
+    console.log(`Tecla presionada: ${event.key}`);
+});
 
 ```
 
