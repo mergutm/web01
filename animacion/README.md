@@ -150,22 +150,22 @@ En este código, se recorre toda la matriz por filas y columnas.
 Del laberinto, dada la fila y columna, se obtiene el valor, y usando el diccionario de colores se tendría el color a usar para mostrar el rectángulo que determina cada obstáculo.
 
 ```javascript
-
+ 
 // Dibujar el laberinto
 function dibujar_laberinto1() {
-      for (let row = 0; row < laberinto.length; row++) {
-          for (let col = 0; col < laberinto[row].length; col++) {
-              const valor_en_celda = laberinto[row][col];
-              const x = col * cellWidth;
-              const y = row * cellHeight;
+    for (let row = 0; row < laberinto.length; row++) {
+        for (let col = 0; col < laberinto[row].length; col++) {
+            const valor_en_celda = laberinto[row][col];
+            const x = col * cellWidth;
+            const y = row * cellHeight;
 
-              // Dibujar la celda
-              ctx.fillStyle = colores[valor_en_celda];
-              ctx.fillRect(x, y, cellWidth, cellHeight);
- 
-          }
-       } 
-  }
+            // Dibujar la celda
+            ctx.fillStyle = colores[valor_en_celda];
+            ctx.fillRect(x, y, cellWidth, cellHeight);
+
+        }
+    } 
+}
 ```
 * Las posiciones x, y se obtienen usando el índice de filas y columnas (col, row) que generan valores de 0,1,2..., etc. Adicionalmente se multiplican por el ancho y alto de cada celda.
 * `ctx.fillStyle` determina el valor con el que se dibujará el rectángulo, usando el color tomado de la matriz.
@@ -194,11 +194,103 @@ ctx.strokeRect(x, y, cellSize, cellSize);
 ```
 
 
+
 La función de dibujado del laberinto sería asi:
+
+
+```javascript
+
+// Dibujar el laberinto
+function dibujar_laberinto2() {
+    for (let row = 0; row < laberinto.length; row++) {
+        for (let col = 0; col < laberinto[row].length; col++) {
+            const valor_en_celda = laberinto[row][col];
+            const x = col * cellWidth;
+            const y = row * cellHeight;
+
+            // Dibujar la celda
+            ctx.fillStyle = colores[valor_en_celda];
+            ctx.fillRect(x, y, cellWidth, cellHeight);
+
+            // Dibujar bordes
+            ctx.strokeStyle = '#000';
+            ctx.strokeRect(x, y, cellWidth, cellHeight);
+        }
+    } 
+}
+```
+
+Obteniendo la siguiente salida:
 
 <img src='https://github.com/mergutm/web01/blob/main/animacion/img/lab03.png'>
 
 ### Posición del jugador
+
+* Se obtiene la posición del jugador
+* Se calcula la posición superior izquierda de la celda que identifica al jugador.
+* Se dibuja el rectángulo usando el color que se definió para el jugador (amarillo).
+
+```javascript
+
+    // Dibujar la posición del jugador después de mostrar el laberinto
+    const { row, col } = pos_jugador;
+    const x = col * cellWidth;
+    const y = row * cellHeight;
+    ctx.fillStyle = colores.jugador;
+    ctx.fillRect(x, y, cellWidth, cellHeight);
+```
+Al agregar todo a la función, se obtiene la siguiente función.
+
+```javascript
+// Dibujar el laberinto
+function dibujar_laberinto3() {
+    for (let row = 0; row < laberinto.length; row++) {
+        for (let col = 0; col < laberinto[row].length; col++) {
+            const valor_en_celda = laberinto[row][col];
+            const x = col * cellWidth;
+            const y = row * cellHeight;
+
+            // Dibujar la celda
+            ctx.fillStyle = colores[valor_en_celda];
+            ctx.fillRect(x, y, cellWidth, cellHeight);
+
+            // Dibujar bordes
+            ctx.strokeStyle = '#000';
+            ctx.strokeRect(x, y, cellWidth, cellHeight);
+        }
+    } 
+   
+    // Dibujar la posición del jugador después de mostrar el laberinto
+    const { row, col } = pos_jugador;
+    console.log(pos_jugador);
+    const x = col * cellWidth;
+    const y = row * cellHeight;
+    ctx.fillStyle = colores.jugador;
+    ctx.fillRect(x, y, cellWidth, cellHeight);
+}
+
+```
+Se apreciará el siguiente laberinto en pantalla: 
+
+<img src='https://github.com/mergutm/web01/blob/main/animacion/img/lab04.png'>
+Notar el rectángulo amarillo que indica la posición del jugador.
+
+
+
+
+
+
+```javascript
+
+```
+
+
+
+```javascript
+
+```
+
+
 
 ```javascript
 
