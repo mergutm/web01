@@ -287,7 +287,6 @@ document.addEventListener("keydown", (event) => {
     console.log(`Tecla presionada: ${event.key}`);
 });
 
-
 // Agregar un evento global para detectar la tecla presionada
 document.addEventListener("keyup", (event) => {
     console.log(`Tecla liberada: ${event.key}`);
@@ -300,13 +299,13 @@ document.addEventListener("keyup", (event) => {
 | keyup    | Al soltar una tecla                        | Sí                                            |
 | keypress | Al presionar una tecla que genera carácter | No (Obsoleto)                                 |
 
+### Estos son los eventos que pueden usarse para detectar acciones por teclado.
 * `keydown`: Se dispara cuando el usuario presiona una tecla.
 Se activa una vez, incluso si la tecla se mantiene presionada.
 Útil para capturar la tecla en el momento exacto en que comienza a presionarse.
 * `keyup`: Se dispara cuando el usuario libera una tecla.
 Útil para detectar acciones después de que se completa la pulsación.
 * `keypress`: Similar a keydown, pero se activa sólo para teclas que generan un carácter visible. **Nota**: Este evento está obsoleto y se desaconseja su uso. Se sugiere usar keydown o keyup. 
-
 
 
 ```javascript
@@ -321,13 +320,29 @@ Se activa una vez, incluso si la tecla se mantiene presionada.
 
 
 
+
+
 ```javascript
-// Agregar un evento global para detectar la tecla presionada
-document.addEventListener("keydown", (event) => {
-    console.log(`Tecla presionada: ${event.key}`);
-});
 
 ```
+
+
+
+
+
+```javascript
+
+```
+
+
+
+
+
+```javascript
+
+```
+
+
 
 
 
