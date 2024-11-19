@@ -279,7 +279,7 @@ Notar el rectángulo amarillo que indica la posición del jugador.
 
 Haciendo un paréntesis, existen 2 eventos que se pueden usar para detectar cuando se presiona una tecla en un componente de HTML. 
 
-Este código puede probarse en la consola o agregarse al código en JS.
+Este código puede probarse en la consola o agregarse al código en JS. No es parte de la versión final, pero puede agregarse para debugear.
 
 ```javascript
 // Agregar un evento global para detectar la tecla presionada
@@ -308,46 +308,52 @@ Se activa una vez, incluso si la tecla se mantiene presionada.
 * `keypress`: Similar a keydown, pero se activa sólo para teclas que generan un carácter visible. **Nota**: Este evento está obsoleto y se desaconseja su uso. Se sugiere usar keydown o keyup. 
 
 
-```javascript
-        // Escuchar eventos de teclado
-        document.addEventListener('keydown', (event) => {
-            if (event.key === 'ArrowUp') movePlayer('up');
-            else if (event.key === 'ArrowDown') movePlayer('down');
-            else if (event.key === 'ArrowLeft') movePlayer('left');
-            else if (event.key === 'ArrowRight') movePlayer('right');
-        });
-```
 
 
+## Detección de las teclas de dirección
 
-
+El siguiente código permite detectar el evento de presionar una tecla de dirección, haciendo uso de una función para hacer cambios y validaciones en el laberinto.
 
 ```javascript
-
+// Escuchar eventos de teclado
+document.addEventListener('keydown', (event) => {
+    if (event.key === 'ArrowUp') mover_jugador('up');
+    else if (event.key === 'ArrowDown') mover_jugador('down');
+    else if (event.key === 'ArrowLeft') mover_jugador('left');
+    else if (event.key === 'ArrowRight') mover_jugador('right');
+});
 ```
 
-
-
+Cabe notar que al presionar una tecla de direccion se llama a una función que tiene por objetivo redibujar y validar la posición del jugador en el laberinto.
 
 
 ```javascript
+function mover_jugador(direction) {
+    const { row, col } = pos_jugador;
+    let newRow = row;
+    let newCol = col;
 
+    // Calcular nueva posición
+    if (direction === 'up') newRow--;
+    else if (direction === 'down') newRow++;
+    else if (direction === 'left') newCol--;
+    else if (direction === 'right') newCol++;
+
+    // Validar límites del laberinto y evitar obstáculos
+    if (
+        newRow >= 0 && newRow < laberinto.length &&
+        newCol >= 0 && newCol < laberinto[0].length &&
+        //solo se puede mover a sitios donde es "camino"
+        laberinto[newRow][newCol] === 0
+    ) {
+        pos_jugador = { row: newRow, col: newCol };
+    }
+
+    // Redibujar el laberinto
+    dibujar_laberinto3();
+}
 ```
 
 
-
-
-
-```javascript
-
-```
-
-
-
-
-
-```javascript
-
-```
 
 
